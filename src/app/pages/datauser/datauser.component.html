@@ -1,31 +1,155 @@
 <mat-horizontal-stepper>
     <mat-step label="Datos del usuario">
-        <form>
+        <div class="col-5">
+            <hr>
+            <form autocomplete="off" [formGroup]="forma" (ngSubmit)="save()">
+              <div>
 
-            <label>Pais: <input type="select" name="nombrecompleto"></label><br>
-            <label>Pais: <input type="select" name="nombrecompleto"></label><br>
-            <label>Pais: <input type="select" name="nombrecompleto"></label><br>
-            <label>Pais: <input type="select" name="nombrecompleto"></label><br>  
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Pais</label>
+                    <div class="col-8">
+              
+                        <select class="form-control" id="accion">
+                            <option value="" selected disabled>Seleccione un pais</option>
+                            <option *ngFor="let c of paises" value="{{c.idPais}}">{{c.descripcion}}</option>
+                      </select>
+                      <small *ngIf="paisNoValido" class= "text-danger">Seleccione un pais</small>
+                    </div>
+                  </div> 
 
-          
-          </form> 
+                <br>
 
-          <button mat-button matStepperNext> Siguiente </button>
+                <div class="form-group row">
+                  <label class="col-2 col-form-label">Nombre</label>
+                  <div class="col-8">
+            
+                    <input class="form-control"
+                           type="text"
+                           placeholder="Nombre"
+                           formControlName="nombre"
+                           [class.is-invalid]="nombreNoValido">
+                    <small *ngIf="nombreNoValido" class= "text-danger">Ingrese un nombre</small>
+                  </div>
+                </div>  
+
+                <br>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Nit</label>
+                    <div class="col-8">
+              
+                      <input class="form-control"
+                             type="text"
+                             placeholder="Nit"
+                             formControlName="nit"
+                             [class.is-invalid]="nitNoValido">
+                      <small *ngIf="nombreNoValido" class= "text-danger">Ingrese un nit</small>
+                    </div>
+                  </div> 
+                
+                  <br>
+
+                  <div class="form-group row" formGroupName="ubicaciones">
+                    <label class="col-2 col-form-label">Ubicaciones</label>
+
+                    <div class="form-group row">
+                            <label class="col-2 col-form-label">Departamento</label>
+                            <div class="col-8">
+                                <select class="form-control" id="accion">
+                                <option value="" selected disabled>Seleccione un departamento</option>
+                                <!-- <option value="{{c.idElement}}" *ngFor="let c of campos.selectAccion">{{c.description}}</option> -->
+                                <option>Departamento 1</option>
+                                <option>Departamento 2</option>
+                                <option>Departamento 3</option>
+                              </select>
+                              <small *ngIf="departamentoNoValido" class= "text-danger">Seleccione un departamento</small>
+                            </div>
+                          </div> 
+                      </div> 
+
+                      <br>
+
+                     <div class="form-group row">
+                            <label class="col-2 col-form-label">Ciudad</label>
+                            <div class="col-8">
+                                <select class="form-control" id="accion">
+                                <option value="" selected disabled>Seleccione una ciudad</option>
+                                <!-- <option value="{{c.idElement}}" *ngFor="let c of campos.selectAccion">{{c.description}}</option> -->
+                                <option>Ciudad 1</option>
+                                <option>Ciudad 2</option>
+                                <option>Ciudad 3</option>
+                              </select>
+                              <small *ngIf="ciudadNoValida" class= "text-danger">Seleccione una Ciudad</small>
+                            </div>
+                          </div> 
+                      </div> 
+
+
+                <div class="form-group row" formGroupName="direcciones">
+                    <label class="col-2 col-form-label">Direcciones</label>
+                          <div class="form-group row">
+                            <label class="col-2 col-form-label">Tipo de dirección</label>
+                            <div class="col-8">
+                                <select class="form-control input-peque" id="accion">
+                                <option value="" selected disabled>Seleccione un tipo de dirección</option>
+                                <!-- <option value="{{c.idElement}}" *ngFor="let c of campos.selectAccion">{{c.description}}</option> -->
+                                <option>tipo de dirección 1</option>
+                                <option>tipo de dirección 2</option>
+                                <option>tipo de dirección 3</option>
+                              </select>
+                              <small *ngIf="ciudadNoValida" class= "text-danger">Seleccione un tipo de dirección</small>
+                            </div>
+                          </div> 
+                      </div> 
+
+                      <div class="form-group row" formGroupName="direcciones">
+                          <label class="col-2 col-form-label">Descripción</label>
+                          <div class="col-8">
+                            <textarea class="form-control"
+                            type="text"
+                            placeholder="Descripción"
+                            formControlName="descripcion"
+                            [class.is-invalid]="descripcionNoValida">
+
+                            </textarea>
+                            <small *ngIf="ciudadNoValida" class= "text-danger">Agregue una descripción</small>
+                          </div>
+                        </div> 
+        
+            
+            
+            
+              <div class="form-group row">
+                <label class="col-2 col-form-label">&nbsp;</label>
+                <div class="input-group col-md-8">
+                  <button type="submit" class="btn btn-outline-primary">
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            
+            </form>
+            
+    </div>
+        
+        <br>
+        
+        <button mat-button matStepperNext class="btn btn-outline-primary btn-block"> Siguiente </button>
 
     </mat-step>
     
     <mat-step label="datos de usuario2">
         <p>datos de usuario2 detalles</p>   
         <div>
-            <button mat-button matStepperPrevious> Atrás </button>
-            <button mat-button matStepperNext> Siguiente </button>
+            <button mat-button matStepperPrevious class="btn btn-outline-primary btn-block"> Atrás </button>
+            <button mat-button matStepperNext class="btn btn-outline-primary btn-block"> Siguiente </button>
 
         </div>     
     </mat-step>
 
     <mat-step label="datos de usuario final">
         <p>datos de usuario final detalles</p>  
-        <button mat-button matStepperPrevious> Atrás </button>
+        <button mat-button matStepperPrevious class="btn btn-outline-primary btn-block"> Atrás </button>
 
     </mat-step>
 
